@@ -7,11 +7,11 @@ import { Injectable } from '@angular/core';
 export class UserDetailsService {
 
   fromsignup : boolean = false;
-  firstname : any =""
+  firstname : any = "";
   constructor(private http:HttpClient) { }
-
-  private  createurl : string ='http://localhost:8089/api/CreateUserDetails';
+  private BaseUrl : string = 'http://localhost:8089/api/';
   public post(data: any) { 
-    return this.http.post(this.createurl, data); 
+    const url = this.BaseUrl + 'CreateUserDetails';
+    return this.http.post(url, data); 
     } 
 }
