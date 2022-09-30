@@ -1,0 +1,172 @@
+<div class="container">
+    <div class="container">
+        <div class="row py-md-2 align-items-centerr">
+    <div class="col-12 text-center">
+        <h3 class="display-5 mb-4 font-weight-bold text-black mt-5">Best Rates for Parking</h3>
+    </div>
+        </div>
+        </div>
+
+    <div class="p-4 position-relative rounded-bottom shadow border border-light col-md-12 ">
+        <div class="tab-content">
+            <div class="tab-pane fade show active" role="tabpabel">
+                <form>
+
+                    <div class="row p-0 m-0">
+                        <div class="col-lg-3 p-2">
+                        <div class="col-sm-10">
+                            <select name="Location" class="form-control" ng-readonly> 
+                                <option>Location</option>
+                                <option *ngFor="let loc of options">
+                                    {{loc}}
+                                </option>
+                              </select>
+                        </div>
+                           
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <div class="row">
+                                <div class="col-8 pe-0">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="In Time" 
+                                               name="dp" [(ngModel)]="model" ngbDatepicker #d="ngbDatepicker">
+                                        <button class="btn btn-outline-secondary calendar"  (click)="d.toggle()" type="button"></button>
+                                      </div>
+                                </div>
+                                <div class="col-4 pe-0">
+                                <select id="start-time" name="start-time" aria-label="Pick-Up Time Selector"
+                                class="form-control  required"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0; min-height: 38px;">
+                                <option value="default" >Please select a time to drop-off your vehicle.</option>
+                                <option>12:00 AM</option>
+                                <option>12:30 AM</option>
+                                <option>1:00 AM</option>
+                                <option>1:30 AM</option>
+                                <option>2:00 AM</option>
+                                <option>2:30 AM</option>
+                                <option>3:00 AM</option>
+                                <option>3:30 AM</option>
+                                <option>4:00 AM</option>
+                                <option>4:30 AM</option>
+                                <option>5:00 AM</option>
+                                <option>5:30 AM</option>
+                                <option>6:00 AM</option>
+                                <option>6:30 AM</option>
+                                <option>7:00 AM</option>
+                                <option>7:30 AM</option>
+                                <option>8:00 AM</option>
+                                <option>8:30 AM</option>
+                                <option>9:00 AM</option>
+                                <option>9:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option selected="selected">1:00 PM</option>
+                                <option>1:30 PM</option>
+                                <option>2:00 PM</option>
+                                <option>2:30 PM</option>
+                                <option>3:00 PM</option>
+                                <option>3:30 PM</option>
+                                <option>4:00 PM</option>
+                                <option>4:30 PM</option>
+                                <option>5:00 PM</option>
+                                <option>5:30 PM</option>
+                                <option>6:00 PM</option>
+                                <option>6:30 PM</option>
+                                <option>7:00 PM</option>
+                                <option>7:30 PM</option>
+                                <option>8:00 PM</option>
+                                <option>8:30 PM</option>
+                                <option>9:00 PM</option>
+                                <option>9:30 PM</option>
+                                <option>10:00 PM</option>
+                                <option>10:30 PM</option>
+                                <option>11:00 PM</option>
+                                <option>11:30 PM</option>
+                            </select>
+    </div>
+                            </div>
+                       
+                        </div>
+                        <div class="col-lg-4 p-2">
+                            <div class="row">
+                                <div class="col-8 pe-0">
+                                    <div class="input-group">
+                                        <input class="form-control" placeholder="Out Time" 
+                                               name="dp1" [(ngModel)]="model1" ngbDatepicker #d1="ngbDatepicker">
+                                        <button class="btn btn-outline-secondary calendar"  (click)="d1.toggle()" type="button"></button>
+                                      </div>
+                                </div>
+                                <div class="col-4 pe-0">
+                                <select id="start-time" name="start-time" aria-label="Pick-Up Time Selector"
+                                class="form-control  required"
+                                style="border-top-left-radius: 0; border-bottom-left-radius: 0; min-height: 38px;">
+                                <option value="default" >Please select a time to drop-off your vehicle.</option>
+                                <option>12:00 AM</option>
+                                <option>12:30 AM</option>
+                                <option>1:00 AM</option>
+                                <option>1:30 AM</option>
+                                <option>2:00 AM</option>
+                                <option>2:30 AM</option>
+                                <option>3:00 AM</option>
+                                <option>3:30 AM</option>
+                                <option>4:00 AM</option>
+                                <option>4:30 AM</option>
+                                <option>5:00 AM</option>
+                                <option>5:30 AM</option>
+                                <option>6:00 AM</option>
+                                <option>6:30 AM</option>
+                                <option>7:00 AM</option>
+                                <option>7:30 AM</option>
+                                <option>8:00 AM</option>
+                                <option>8:30 AM</option>
+                                <option>9:00 AM</option>
+                                <option>9:30 AM</option>
+                                <option>10:00 AM</option>
+                                <option>10:30 AM</option>
+                                <option>11:00 AM</option>
+                                <option>11:30 AM</option>
+                                <option>12:00 PM</option>
+                                <option>12:30 PM</option>
+                                <option selected="selected">1:00 PM</option>
+                                <option>1:30 PM</option>
+                                <option>2:00 PM</option>
+                                <option>2:30 PM</option>
+                                <option>3:00 PM</option>
+                                <option>3:30 PM</option>
+                                <option>4:00 PM</option>
+                                <option>4:30 PM</option>
+                                <option>5:00 PM</option>
+                                <option>5:30 PM</option>
+                                <option>6:00 PM</option>
+                                <option>6:30 PM</option>
+                                <option>7:00 PM</option>
+                                <option>7:30 PM</option>
+                                <option>8:00 PM</option>
+                                <option>8:30 PM</option>
+                                <option>9:00 PM</option>
+                                <option>9:30 PM</option>
+                                <option>10:00 PM</option>
+                                <option>10:30 PM</option>
+                                <option>11:00 PM</option>
+                                <option>11:30 PM</option>
+                            </select>
+    </div>
+                            </div>
+                       
+                        </div>
+                        <div class="col lg-1 p-2">
+                            <button class="btn btn-primary">Search</button>
+                        </div>
+                    </div>
+                </form>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+
