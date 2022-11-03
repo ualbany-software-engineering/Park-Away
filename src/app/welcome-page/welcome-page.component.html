@@ -1,84 +1,116 @@
-
 <div>
-<nav class="navbar navbar-light bg-light" >
-    <div class="container-fluid" style="background-color: #563d7c;; line-height: 65px;">
+  <nav class="navbar navbar-light bg-light">
+    <div
+      class="container-fluid"
+      style="background-color: #563d7c; line-height: 65px"
+    >
       <div class="row">
         <div class="col md-5">
-          <a class="navbar-brand" href="#">
-            <img src="assets/mainlogo.png" width="140" height="50" class="d-inline-block align-items-center" alt="">
-            </a>
+          <a class="navbar-brand" routerLink="/home">
+            <img
+              src="assets/mainlogo.png"
+              width="140"
+              height="50"
+              class="d-inline-block align-items-center"
+              alt=""
+            />
+          </a>
         </div>
-      
       </div>
-      
-      <!--<ul class="navbar-nav">-->
-        <!-- Dropdown -->
-        <div class="dropdown">
-            <button class="btn btn-outline-light btn-lg" style="color : #FFFFFF;" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-              Welcome User
-            </button>
-            <ul class="dropdown-menu" >
-              <li><a class="dropdown-item" href="#" routerLink="/Login" (click)="clickLogin(false)">Login</a></li>
-              <li><a class="dropdown-item" href="#" routerLink="/signuppage" (click)="clickLogin(false)">SignUp</a></li>
-            </ul>
-          </div>
-      
+
+      <!-- Dropdown -->
+      <div class="dropdown">
+        <button
+          class="btn btn-outline-light btn-lg"
+          style="color: #ffffff"
+          type="button"
+          id="dropdownMenuButton1"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          Welcome {{ lastName }}
+        </button>
+        <ul class="dropdown-menu">
+          <ng-container *ngIf="!isUserLoggedIn">
+            <li *ngIf="showLink('/login')">
+              <a class="dropdown-item" routerLink="/login">login</a>
+            </li>
+            <li *ngIf="showLink('/signup')">
+              <a class="dropdown-item" routerLink="/signup">SignUp</a>
+            </li>
+          </ng-container>
+          <ng-container *ngIf="isUserLoggedIn">
+            <li>
+              <a class="dropdown-item" routerLink="/profile">My Account</a>
+            </li>
+            <li *ngIf="isUserLoggedIn">
+              <span class="dropdown-item link" routerLink="/mybooking"
+                >My Bookings</span
+              >
+            </li>
+            <li *ngIf="isUserLoggedIn">
+              <span class="dropdown-item link" (click)="signOut()"
+                >Sign Out</span
+              >
+            </li>
+          </ng-container>
+        </ul>
+      </div>
     </div>
   </nav>
+  <div *ngIf="showAlert">
+    <app-alert (onTimeOut)="showAlert = false"></app-alert>
+  </div>
 
-  <body>
-   
-    <div *ngIf="isSearch">
-      <app-search-page></app-search-page>
-      <div style="height : 200px" >
+  <!-- <body> -->
+  <ng-container>
+    <router-outlet></router-outlet>
+    <!-- </div> -->
+  </ng-container>
+  <!-- </body> -->
+  <!-- Footer -->
+  <footer class="text-center footer-body" style="background-color: #cfd8dc">
+    <!-- Section: Links  -->
+    <div class="container p-4 pb-0">
+      <div class="container p-4">
+        <!--Grid row-->
+        <div class="row">
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">About Us</h5>
 
-      </div>
-    </div>
+            <p>
+              Park Away provides travelers with the most affordable and
+              convenient parking throughout the United States. When looking to
+              book their next vacation or work event, people have learned to
+              shop smart using the web to find the best deals on flights,
+              hotels, rental cars, and parking. Park Away helps travelers and
+              eventgoers save money on all their parking needs.
+            </p>
+          </div>
+          <!--Grid column-->
 
-    <div *ngIf="!isSearch">
-      <router-outlet></router-outlet>
-    </div>
+          <!--Grid column-->
+          <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
+            <h5 class="text-uppercase">Contact Us</h5>
 
-
-  </body>
-<!-- Footer -->
-<footer class="text-center" style="background-color: #CFD8DC">
-  <!-- Section: Links  -->
-  <div class="container p-4 pb-0">
-
- 
-    <div class="container p-4">
-      <!--Grid row-->
-      <div class="row">
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase">About Us</h5>
-  
-          <p>
-            Park Away provides travelers with the most affordable and convenient parking throughout the United States. When looking to book their next vacation or work event, people have learned to shop smart using the web to find the best deals on flights, hotels, rental cars, and parking. 
-            Park Away helps travelers and eventgoers save money on all their parking needs.
-          </p>
-        </div>
-        <!--Grid column-->
-  
-        <!--Grid column-->
-        <div class="col-lg-6 col-md-12 mb-4 mb-md-0">
-          <h5 class="text-uppercase">Contact Us</h5>
-  
-          
-            <p><i class="fas fa-home me-3 text-secondary"></i> Albany, NY 12206, US</p>
+            <p>
+              <i class="fas fa-home me-3 text-secondary"></i> Albany, NY 12206,
+              US
+            </p>
             <p>
               <i class="fas fa-envelope me-3 text-secondary"></i>
               info@example.com
             </p>
-            <p><i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88</p>
+            <p>
+              <i class="fas fa-phone me-3 text-secondary"></i> + 01 234 567 88
+            </p>
+          </div>
+          <!--Grid column-->
         </div>
-        <!--Grid column-->
+        <!--Grid row-->
       </div>
-      <!--Grid row-->
     </div>
-   
-</div>
-</footer>
-<!-- Footer -->
+  </footer>
+  <!-- Footer -->
 </div>
