@@ -12,6 +12,7 @@ import {  NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import '@angular/localize/init';
 import {HttpClientModule} from '@angular/common/http';
 import { SearchResultComponent } from './search-result/search-result.component';
+import { AdminComponent } from './admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -21,6 +22,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
     SignUpPageComponent,
     SearchPageComponent,
     SearchResultComponent,
+    AdminComponent
     
   ],
 

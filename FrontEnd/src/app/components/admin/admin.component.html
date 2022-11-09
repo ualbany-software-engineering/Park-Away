@@ -1,0 +1,264 @@
+<div class="container">
+    <div class="container">
+      <div class="row py-md-2 align-items-centerr">
+        <div class="col-12 text-center">
+          <div class="flex-container space-evenly">
+            <ng-container *ngFor="let adminItem of adminItems">
+              <div
+                [ngClass]="
+                  selectedItem == adminItem ? 'flex-item selected' : 'flex-item'
+                "
+                (click)="selectItem(adminItem)"
+              >
+                {{ adminItem }}
+              </div>
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div
+      class="p-4 position-relative rounded-bottom shadow border border-light col-md-12"
+    >
+      <div class="tab-content">
+        <div class="tab-pane fade show active" role="tabpabel">
+          <!-- facilityForm form starts -->
+          <ng-container *ngIf="selectedItem === 'Facility'">
+            <ng-container *ngIf="facilityData && columnDefs">
+              <ag-grid-angular
+                style="width: 1070px; height: 300px"
+                class="ag-theme-alpine"
+                [rowData]="facilityData.data"
+                [columnDefs]="columnDefs"
+                [frameworkComponents]="frameworkComponents"
+              >
+              </ag-grid-angular>
+            </ng-container>
+            <form [formGroup]="facilityForm" (ngSubmit)="submitFacility()">
+              <div class="form-group pt-3">
+                <div class="input-field">
+                  <span class="fa fa-lock p-2"></span>
+                  <input
+                    formControlName="facilityName"
+                    placeholder="Enter Facility Name"
+                    textlength="200"
+                  />
+                </div>
+              </div>
+              <button
+                [disabled]="facilityForm.invalid"
+                type="submit"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                {{ isEditEnabled ? "Update" : "Create" }} {{ selectedItem }}
+              </button>
+              <button
+                type="reset"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                Cancel
+              </button>
+            </form>
+          </ng-container>
+          <!-- facilityForm form ends -->
+  
+          <!-- locationForm form starts -->
+          <ng-container *ngIf="selectedItem === 'Location'">
+            <ng-container *ngIf="locationData && columnDefs">
+              <ag-grid-angular
+                style="width: 1070px; height: 300px"
+                class="ag-theme-alpine"
+                [rowData]="locationData.data"
+                [columnDefs]="columnDefs"
+                [frameworkComponents]="frameworkComponents"
+              >
+              </ag-grid-angular>
+            </ng-container>
+            <form [formGroup]="locationForm" (ngSubmit)="submitLocation()">
+              <div class="form-group pt-3">
+                <div class="input-field">
+                  <span class="fa fa-lock p-2"></span>
+                  <input
+                    formControlName="locationName"
+                    placeholder="Enter Location Name"
+                    textlength="200"
+                  />
+                </div>
+              </div>
+              <button
+                [disabled]="locationForm.invalid"
+                type="submit"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                {{ isEditEnabled ? "Update" : "Create" }} {{ selectedItem }}
+              </button>
+              <button
+                type="reset"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                Cancel
+              </button>
+            </form>
+          </ng-container>
+          <!-- locationForm form ends -->
+  
+          <!-- parkingForm form starts -->
+          <ng-container *ngIf="selectedItem === 'Parking'">
+            <ng-container *ngIf="parkingData && locationData && columnDefs">
+              <ag-grid-angular
+                style="width: 1070px; height: 300px"
+                class="ag-theme-alpine"
+                [rowData]="parkingData.data"
+                [columnDefs]="columnDefs"
+                [frameworkComponents]="frameworkComponents"
+              >
+              </ag-grid-angular>
+            </ng-container>
+            <form [formGroup]="parkingForm" (ngSubmit)="submitParking()">
+              <div class="form-group pt-3 flex-container space-evenly">
+                <div class="input-field form-field flex-item-forms">
+                  <input
+                    formControlName="parkingName"
+                    placeholder="Enter Parking Name"
+                    textlength="200"
+                  />
+                </div>
+  
+                <div class="input-field form-field flex-item-forms">
+                  <input
+                    formControlName="hourlyPrice"
+                    placeholder="Enter Hourly Price"
+                    textlength="200"
+                  />
+                </div>
+  
+                <div class="input-field form-field flex-item-forms">
+                  <input
+                    formControlName="capacity"
+                    placeholder="Capacity"
+                    textlength="50"
+                  />
+                </div>
+  
+                <div class="input-field form-field flex-item-forms">
+                  <input
+                    formControlName="imageLink"
+                    placeholder="Enter Image URL"
+                    textlength="200"
+                  />
+                </div>
+  
+                <div
+                  *ngIf="locationData"
+                  formGroupName="location"
+                  class="input-field form-field flex-item-forms"
+                >
+                  <select class="custom-select mb-3" formControlName="locationId">
+                    <option value="" disabled selected>Choose Location</option>
+                    <option
+                      *ngFor="let location of locationData.data"
+                      [ngValue]="location.locationId"
+                    >
+                      {{ location.locationName }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <button
+                [disabled]="parkingForm.invalid"
+                type="submit"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                {{ isEditEnabled ? "Update " : "Create " }} {{ selectedItem }}
+              </button>
+              <button
+                type="reset"
+                class="btn btn-primary btn-block mt-4 w-20 submit-button"
+              >
+                Cancel
+              </button>
+            </form>
+  
+            <hr />
+            <ng-container>
+              <h3>Add/Remove facilities to parking</h3>
+  
+              <ag-grid-angular
+                *ngIf="facilityParkingData"
+                style="width: 1070px; height: 300px"
+                class="ag-theme-alpine"
+                [rowData]="facilityParkingData"
+                [columnDefs]="parkingFacilityCoulmnDef"
+                [frameworkComponents]="frameworkComponents"
+              ></ag-grid-angular>
+              <!-- attach parking starts here -->
+              <ng-container *ngIf="parkingData && facilityData">
+                <form
+                  [formGroup]="facilityParkingForm"
+                  (ngSubmit)="submitParkingFacility()"
+                >
+                  <div class="form-group pt-3 flex-container space-left">
+                    <div
+                      class="input-field form-field flex-item-forms"
+                      formGroupName="parking"
+                    >
+                      <span class="date-label">Parking:</span>
+                      <select
+                        class="custom-select mb-3"
+                        formControlName="parkingId"
+                      >
+                        <option value="" disabled selected>Choose Parking</option>
+                        <option
+                          *ngFor="let parking of parkingData.data"
+                          [ngValue]="parking.parkingId"
+                        >
+                          {{ parking.parkingName }}
+                        </option>
+                      </select>
+                    </div>
+  
+                    <div
+                      class="input-field form-field flex-item-forms"
+                      formGroupName="facility"
+                    >
+                      <span class="date-label">Facility:</span>
+                      <select
+                        class="custom-select mb-3"
+                        formControlName="facilityId"
+                      >
+                        <option value="" disabled selected>
+                          Choose Facility
+                        </option>
+                        <option
+                          *ngFor="let facility of facilityData.data"
+                          [ngValue]="facility.facilityId"
+                        >
+                          {{ facility.facilityName }}
+                        </option>
+                      </select>
+                    </div>
+                  </div>
+                  <button
+                    [disabled]="facilityParkingForm.invalid"
+                    type="submit"
+                    class="btn btn-primary btn-block mt-4 w-20 submit-button"
+                  >
+                    Add Facility to parking
+                  </button>
+                  <button
+                    type="reset"
+                    class="btn btn-primary btn-block mt-4 w-20 submit-button"
+                  >
+                    Cancel
+                  </button>
+                </form>
+              </ng-container>
+            </ng-container>
+          </ng-container>
+          <!-- parkingForm form ends -->
+        </div>
+      </div>
+    </div>
+  </div>
+  
