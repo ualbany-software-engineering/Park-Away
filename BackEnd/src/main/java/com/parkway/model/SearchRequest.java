@@ -9,4 +9,6 @@ public class SearchRequest {
     private Calendar startTime;
     private Calendar endTime;
     private Long locationId;
+    private Double latitude;
+    private Double longitude;
 }
