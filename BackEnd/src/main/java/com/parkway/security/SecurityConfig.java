@@ -64,6 +64,9 @@ public class SecurityConfig {
                 .authorizeRequests().antMatchers("/api/auth/**").permitAll()
                 .antMatchers("/swagger-ui/**", "/v3/api-docs/**").permitAll()
                 .antMatchers("/api/parking/search").permitAll()
+                .antMatchers("/api/parking/airport").permitAll()
+                .antMatchers("/api/parking/cruise").permitAll()
+                .antMatchers("/api/parking/event").permitAll()
                 .antMatchers("/api/location/all").permitAll()
                 .antMatchers("/api/location").permitAll()
                 .anyRequest().authenticated();

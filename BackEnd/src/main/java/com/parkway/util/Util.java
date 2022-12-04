@@ -5,10 +5,7 @@ import org.springframework.beans.BeanWrapper;
 import org.springframework.beans.BeanWrapperImpl;
 import org.springframework.data.domain.Page;
 
-import java.util.Calendar;
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 import java.util.concurrent.TimeUnit;
 
 public class Util {
@@ -34,6 +31,18 @@ public class Util {
         }
         PageResponse<T> pageResponse = new PageResponse<>();
         pageResponse.setData(page.getContent());
+        pageResponse.setCurrentPage(page.getNumber() + 1);
+        pageResponse.setTotalPages(page.getTotalPages());
+        pageResponse.setTotalItems(page.getTotalElements());
+        return pageResponse;
+    }
+
+    public static <T> PageResponse<T> createPageResponseForSearch(Page<T> page, List<T> list) {
+        if (page == null) {
+            return new PageResponse<T>();
+        }
+        PageResponse<T> pageResponse = new PageResponse<>();
+        pageResponse.setData(list);
         pageResponse.setCurrentPage(page.getNumber() + 1);
         pageResponse.setTotalPages(page.getTotalPages());
         pageResponse.setTotalItems(page.getTotalElements());
