@@ -1,0 +1,22 @@
+.alert-banner-success {
+  justify-content: flex-end;
+  position: fixed;
+  left: 85%;
+  top: 50px;
+  z-index: 9999;
+}
+
+.alert-banner-error {
+  justify-content: flex-end;
+  position: fixed;
+  left: 65%;
+  top: 50px;
+  z-index: 9999;
+}
+
+.flex-container {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+}
