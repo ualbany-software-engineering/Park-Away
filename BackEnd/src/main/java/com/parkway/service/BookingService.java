@@ -69,7 +69,7 @@ public class BookingService {
         booking.setUser(user);
         booking.setParking(parking);
         Booking result = bookingRepository.save(booking);
-         mailService.sendBookingMail(booking);
+        // mailService.sendBookingMail(booking);
         availabilityService.updateAvailability(booking);
         return result;
     }

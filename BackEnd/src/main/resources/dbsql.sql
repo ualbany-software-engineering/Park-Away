@@ -53,10 +53,6 @@ CREATE TABLE IF NOT EXISTS `parkaway`.`parking` (
   `image_link` VARCHAR(300) NOT NULL,
   `location_id` BIGINT(0) NOT NULL,
   `capacity` INT NOT NULL,
-  `category` VARCHAR(50) ,
-  `latitude` DOUBLE NOT NULL,
-  `longitude` DOUBLE NOT NULL,
-  
   PRIMARY KEY (`parking_id`),
   UNIQUE INDEX `parking_id_UNIQUE` (`parking_id` ASC) VISIBLE,
   UNIQUE INDEX `name_UNIQUE` (`name` ASC) VISIBLE,
