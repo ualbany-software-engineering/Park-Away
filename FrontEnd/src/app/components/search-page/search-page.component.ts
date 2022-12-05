@@ -18,6 +18,12 @@ export class SearchPageComponent implements OnInit {
   searchForm: FormGroup;
   locationName: string = "";
   noRecordFound = false;
+  lat:any;
+  long:any;
+  noData = false;
+  showData = false;
+  specialParkingData : any;
+
 
   preferredTime = [
     "00:00:00",
@@ -71,7 +77,7 @@ export class SearchPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.authService.userLoggedinStatus();
-
+    this.getLocation();
     this.adminService.getLocation().subscribe((locationData) => {
       this.locationData = locationData;
     });
@@ -133,6 +139,8 @@ export class SearchPageComponent implements OnInit {
         this.searchForm.value.endTime,
         this.searchForm.value.parkingEndTime
       ),
+      latitude: this.lat,
+      longitude: this.long,
     };
 
     this.parkingService
@@ -184,5 +192,62 @@ export class SearchPageComponent implements OnInit {
       return false;
     return true;
   }
+  getLocation() {
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition((position: GeolocationPosition) => {
+        if (position) {
+          console.log("Latitude: " + position.coords.latitude +
+            "Longitude: " + position.coords.longitude);
+          this.lat = position.coords.latitude;
+          this.long = position.coords.longitude;
+          console.log(this.lat);
+          console.log(this.long);
+        }
+      },
+        (error: GeolocationPositionError) => console.log(error));
+    } else {
+      alert("Geolocation is not supported by this browser.");
+    }
+  }
+  airportParking() {
+    //console.log("Checked");
+    this.parkingService
+      .getParkingByAirport()
+      .subscribe((parkingData: any) => {
+        if (parkingData.data.length > 0) {
+          this.showData=true;
+          this.specialParkingData=parkingData.data;
+        } else {
+          this.noData = true;
+        }
+      });
+  }
+
+  cruiseParking() {
+    //console.log("Checked");
+    this.parkingService
+      .getParkingByCruise()
+      .subscribe((parkingData: any) => {
+        if (parkingData.data.length > 0) {
+          this.showData=true;
+          this.specialParkingData=parkingData.data;
+        } else {
+          this.noData = true;
+        }
+      });
+  }
+
+  eventParking() {
+    //console.log("Checked");
+    this.parkingService
+      .getParkingByEvent()
+      .subscribe((parkingData: any) => {
+        if (parkingData.data.length > 0) {
+          this.showData=true;
+          this.specialParkingData=parkingData.data;
+        } else {
+          this.noData = true;
+        }
+      });
+  }
 }
- 

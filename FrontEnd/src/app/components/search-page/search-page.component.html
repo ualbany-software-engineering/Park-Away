@@ -1,131 +1,165 @@
 <div class="container">
-    <div class="container">
-      <div class="row py-md-2 align-items-centerr">
-        <div class="col-12 text-center">
-          <h3 class="display-5 mb-4 font-weight-bold text-black mt-5">
-            Best Rates for Parking
-          </h3>
-        </div>
+  <div class="container">
+    <div class="row py-md-2 align-items-centerr">
+      <div class="col-12 text-center">
+        <h3 class="display-5 mb-4 font-weight-bold text-black mt-5">
+          Best Rates for Parking
+        </h3>
       </div>
     </div>
-  
-    <form [formGroup]="searchForm" (ngSubmit)="searchParking()">
-      <div class="flex-container space-evenly">
-        <div class="flex-item" *ngIf="locationData">
-          <select
-            name="Location"
-            class="form-control"
-            formControlName="locationId"
-          >
-            <option value="" selected disabled>Location</option>
-            <option
-              [value]="location.locationId"
-              *ngFor="let location of locationData.data"
-            >
-              {{ location.locationName }}
-            </option>
-          </select>
-        </div>
-        <div class="input-group flex-item">
-          <input
-            formControlName="startTime"
-            class="form-control"
-            placeholder="Start date"
-            name="dp"
-            ngbDatepicker
-            #d="ngbDatepicker"
-            [minDate]="inMinDate"
-          />
-          <button
-            class="btn btn-outline-secondary calendar"
-            (click)="d.toggle()"
-            type="button"
-          ></button>
-        </div>
-        <div
-          class="flex-item"
-          [ngClass]="isParkingStartTimedisabled() ? 'disabled--item' : ''"
-        >
-          <select
-            formControlName="parkingStartTime"
-            aria-label="Pick-Up Time Selector"
-            class="form-control required"
-            style="
-              border-top-left-radius: 0;
-              border-bottom-left-radius: 0;
-              min-height: 38px;
-            "
-          >
-            <option value="" selected disabled>In time</option>
-            <option [value]="time" *ngFor="let time of inTime">
-              {{ time }}
-            </option>
-          </select>
-        </div>
-        <div
-          class="input-group flex-item"
-          [ngClass]="isParkingEndDateDisabled() ? 'disabled--item' : ''"
-        >
-          <input
-            formControlName="endTime"
-            class="form-control"
-            placeholder="End Date"
-            name="dp1"
-            ngbDatepicker
-            #d1="ngbDatepicker"
-            [minDate]="outMinDate"
-          />
-          <button
-            class="btn btn-outline-secondary calendar"
-            (click)="d1.toggle()"
-            type="button"
-          ></button>
-        </div>
-        <div
-          class="flex-item"
-          [ngClass]="isParkingEndTimeDisabled() ? 'disabled--item' : ''"
-        >
-          <select
-            formControlName="parkingEndTime"
-            aria-label="Pick-Up Time Selector"
-            class="form-control required"
-            style="
-              border-top-left-radius: 0;
-              border-bottom-left-radius: 0;
-              min-height: 38px;
-            "
-          >
-            <option value="" selected disabled>Out time</option>
-            <option [value]="time" *ngFor="let time of outTime">
-              {{ time }}
-            </option>
-          </select>
-        </div>
-      </div>
-      <div class="flex-container search-button">
-        <button
-          style="width: 250px"
-          type="submit"
-          [disabled]="!searchForm.valid"
-          class="btn btn-primary"
-        >
-          Search
-        </button>
-  
-        <!-- <button
-          style="width: 250px; margin-left: 20px"
-          type="reset"
-          class="btn btn-primary"
-        >
-          Cancel
-        </button> -->
-      </div>
-    </form>
   </div>
-  
-  <ng-container *ngIf="noRecordFound">
-    <div class="flex-container no-parking">
-      <h2>No Parking Available!!</h2>
+
+  <form [formGroup]="searchForm" (ngSubmit)="searchParking()">
+    <div class="flex-container space-evenly">
+      <div class="flex-item" *ngIf="locationData">
+        <select name="Location" class="form-control" formControlName="locationId">
+          <option value="" selected disabled>Location</option>
+          <option [value]="location.locationId" *ngFor="let location of locationData.data">
+            {{ location.locationName }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group flex-item">
+        <input formControlName="startTime" class="form-control" placeholder="Start date" name="dp" ngbDatepicker
+          #d="ngbDatepicker" [minDate]="inMinDate" />
+        <button class="btn btn-outline-secondary calendar" (click)="d.toggle()" type="button"></button>
+      </div>
+      <div class="flex-item" [ngClass]="isParkingStartTimedisabled() ? 'disabled--item' : ''">
+        <select formControlName="parkingStartTime" aria-label="Pick-Up Time Selector" class="form-control required"
+          style="
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            min-height: 38px;
+          ">
+          <option value="" selected disabled>In time</option>
+          <option [value]="time" *ngFor="let time of inTime">
+            {{ time }}
+          </option>
+        </select>
+      </div>
+      <div class="input-group flex-item" [ngClass]="isParkingEndDateDisabled() ? 'disabled--item' : ''">
+        <input formControlName="endTime" class="form-control" placeholder="End Date" name="dp1" ngbDatepicker
+          #d1="ngbDatepicker" [minDate]="outMinDate" />
+        <button class="btn btn-outline-secondary calendar" (click)="d1.toggle()" type="button"></button>
+      </div>
+      <div class="flex-item" [ngClass]="isParkingEndTimeDisabled() ? 'disabled--item' : ''">
+        <select formControlName="parkingEndTime" aria-label="Pick-Up Time Selector" class="form-control required" style="
+            border-top-left-radius: 0;
+            border-bottom-left-radius: 0;
+            min-height: 38px;
+          ">
+          <option value="" selected disabled>Out time</option>
+          <option [value]="time" *ngFor="let time of outTime">
+            {{ time }}
+          </option>
+        </select>
+      </div>
     </div>
+    <div class="flex-container search-button">
+      <button style="width: 250px" type="submit" [disabled]="!searchForm.valid" class="btn btn-primary">
+        Search
+      </button>
+
+      <!-- <button
+        style="width: 250px; margin-left: 20px"
+        type="reset"
+        class="btn btn-primary"
+      >
+        Cancel
+      </button> -->
+    </div>
+  </form>
+</div>
+
+<ng-container *ngIf="noRecordFound">
+  <div class="flex-container no-parking">
+    <h2>No Parking Available!!</h2>
+  </div>
+</ng-container>
+
+<br><br>
+<br>
+<br>
+
+<div class="container">
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="row">
+        <div class="col-md-4  mb-4">
+          <div class="card text-center">
+            <a (click)="airportParking()" class="card-link"><img src="assets/homepage-airport.webp"
+                data-src="/img/homepage-airport.jpg" class="card-img-top rounded"
+                alt="Airport Parking conceptual image"></a>
+            <div class="card-body">
+              <h5 class="card-title mb-2">Airport Parking</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Best prices on offsite airport parking.</p>
+              <p><a type="button" class="btn btn-primary btn-lg" title="View airport parking options"
+                  (click)="airportParking()">View Airport Parking</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <a (click)="cruiseParking()" class="card-link"><img src="assets/homepage-cruise.webp"
+                data-src="/img/homepage-cruise.jpg" class="card-img-top rounded"
+                alt="Cruise Parking conceptual image"></a>
+            <div class="card-body">
+              <h5 class="card-title mb-2">Cruise Parking</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Best prices on offsite cruise parking.</p>
+              <p>
+                <a type="button" class="btn btn-primary btn-lg" title="View cruise parking options"
+                (click)="cruiseParking()">View Cruise Parking</a>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4 mb-4">
+          <div class="card text-center">
+            <a (click)="eventParking()" class="card-link"><img src="assets/homepage-event.webp"
+                data-src="/img/homepage-event.jpg" class="card-img-top rounded"
+                alt="Event Parking conceptual image"></a>
+            <div class="card-body">
+              <h5 class="card-title mb-2">Event Parking</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">Best prices on offsite event parking.</p>
+              <p><a type="button" class="btn btn-primary btn-lg" title="View event parking options"
+                (click)="eventParking()">View Event Parking</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br>
+<ng-container *ngIf="noData">
+  <div class="flex-container no-parking">
+    <h2>No Parking Available!!</h2>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="showData">
+<ng-container *ngFor="let item of specialParkingData">
+  <div class="row mb-5">
+    <div class="col-md-8 offset-md-2">
+      <div class="row">
+        <div class="col-md-4  mb-4">
+          <div class="card text-center">
+            <a  class="card-link"><img src="assets/homepage-airport.webp"
+                data-src="/img/homepage-airport.jpg" class="card-img-top rounded"
+                alt="image"></a>
+            <div class="card-body">
+              <h5 class="card-title mb-2">{{item.category}} Parking</h5>
+              <h6 class="card-subtitle mb-2 text-muted"></h6>
+              <p class="card-text">{{item.parkingName}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   </ng-container>
-  
+</ng-container>
